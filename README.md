@@ -10,8 +10,5 @@ Run the server.
 ```sh
 python3 app.py
 ```
-Документация находиться в "api.json". Запихайте его в postman и там будет следующее
-
+The documentation is in "api.json". Shove it into postman and it will contain the following:
 [Documentation](pictures/documentation.png)
-
-Если что-то не работает или непонятно сразу пишите, это мой первый проект
