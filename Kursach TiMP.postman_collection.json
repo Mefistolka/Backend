@@ -1,0 +1,715 @@
+{
+	"info": {
+		"_postman_id": "152075c3-6265-403a-a29f-d215c728e714",
+		"name": "Kursach TiMP",
+		"description": "Все форматы json и т.д., что отправляется на сервер написаны здесь. Если что-то не понятно, сразу пишите.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28989206"
+	},
+	"item": [
+		{
+			"name": "LogRegAPI",
+			"item": [
+				{
+					"name": "/register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"example2_username\",\n    \"password\": \"example_password\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "Регистрация идёт по email. Там есть различные проверки.\n\nЕсли всё правильно, то ответ 200, иначе 400."
+					},
+					"response": []
+				},
+				{
+					"name": "/delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"example_password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"delete"
+							]
+						},
+						"description": "Удаление аккаунта, просим пароль и сверяем + проверка куки"
+					},
+					"response": []
+				},
+				{
+					"name": "/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"example_username\",\n    \"password\": \"example_password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "Вход идёт по почте+паролю\n\nВозвращает 200 + куку сессии"
+					},
+					"response": []
+				},
+				{
+					"name": "/logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"logout"
+							]
+						},
+						"description": "Выход из аккаунта. Ничего не требует. Очищает куку."
+					},
+					"response": []
+				}
+			],
+			"description": "Всё, что связано с пользователем."
+		},
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "/my/wishlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/wishlist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"wishlist"
+							]
+						},
+						"description": "Ничего не требует, получает куку, возвращает все ивенты в следующем формате.\n\n``` json\n{\n    \"username\": \"example_username\",\n    \"events\": [\n        {\n            \"event_id\": \"0fe115f6-8cb1-467b-8c07-b31da93933bf\",\n            \"event_invite_code\": \"b5cb9e-ff79e8\",\n            \"event_name\": \"Amogus\",\n            \"event_description\": \"example_description\",\n            \"max_number_of_people\": 10,\n            \"wishes\": [\n                {\n                    \"id\": 1,\n                    \"item\": \"AMOGUS\"\n                },\n                {\n                    \"id\": 2,\n                    \"item\": \"Xbox\"\n                },\n                {\n                    \"id\": 3,\n                    \"item\": \"Car\"\n                },\n                {\n                    \"id\": 4,\n                    \"item\": \"https://yandex.market.ru/some_tovar\"\n                }\n            ],\n            \"date\": \"None\"\n        },\n        {\n            \"event_id\": \"74d95c6b-34b9-4568-8a27-0cee32480f6b\",\n            \"event_invite_code\": \"cfa86c-a599e4\",\n            \"event_name\": \"Some event name 2\",\n            \"event_description\": \"example_description\",\n            \"max_number_of_people\": 10,\n            \"wishes\": [],\n            \"date\": \"None\"\n        }\n    ]\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "/my/wishlist/show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": \"0fe115f6-8cb1-467b-8c07-b31da93933bf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/wishlist/show",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"wishlist",
+								"show"
+							]
+						},
+						"description": "Более подробное отображение одного листа. Принимает `\"event_id\"` полученный в `/my/lists`\n\nВозвращает:\n\n- `400` если всё плохо\n- `403` если неавторизован\n    \n\nОтвет следующий, если type != \"secret_santa\" и username == list.creator:\n\n``` json\n{\n      \"event_id\": \"18ed8431-c858-4b9d-afbd-8b9a9680f789\",\n      \"creator\": {\n            \"id\": 1,\n            \"username\": \"example_username\"\n      },\n      \"event_invite_code\": \"d25fca-09f855\",\n      \"type\": \"personal\",\n      \"event_name\": \"Amogus\",\n      \"event_description\": \"example_description\",\n      \"max_number_of_people\": 10,\n      \"wishes\": [\n            {\n                  \"id\": 1,\n                  \"item\": \"AMOGSU\"\n            },\n            {\n                  \"id\": 2,\n                  \"item\": \"Xbox\"\n            },\n            {\n                  \"id\": 3,\n                  \"item\": \"Car\"\n            }\n      ],\n      \"date\": \"\",\n      \"partisipators\": [\n            {\n                  \"id\": 1,\n                  \"username\": \"example_username\"\n            },\n            {\n                  \"id\": 3,\n                  \"username\": \"example3_username\"\n            }\n      ]\n\n ```\n\nВ другом случае ответ(для обычного юзера) следующий:\n\n``` json\n{\n      \"event_id\": \"0fe115f6-8cb1-467b-8c07-b31da93933bf\",\n      \"creator\": {\n            \"id\": 1,\n            \"username\": \"example_username\"\n      },\n      \"type\": \"personal\",\n      \"event_name\": \"Amogus\",\n      \"event_description\": \"example_description\",\n      \"max_number_of_people\": 10,\n      \"wishes\": [\n            {\n                  \"id\": 1,\n                  \"wish\": \"AMOGUS\",\n                  \"taken\": \"1\"\n            },\n            {\n                  \"id\": 2,\n                  \"wish\": \"Xbox\",\n                  \"taken\": \"1\"\n            },\n            {\n                  \"id\": 3,\n                  \"wish\": \"Car\",\n                  \"taken\": \"0\"\n            },\n            {\n                  \"id\": 4,\n                  \"wish\": \"https://yandex.market.ru/some_tovar\",\n                  \"taken\": \"0\"\n            }\n      ],\n      \"date\": \"\",\n      \"partisipators\": [\n            {\n                  \"id\": 1,\n                  \"username\": \"example_username\"\n            },\n            {\n                  \"id\": 2,\n                  \"username\": \"example2_username\"\n            }\n      ],\n      \"your_presents\": [\n            \"AMOGUS\",\n            \"Xbox\"\n      ]\n}\n\n ```\n\nОтвет следующий, если type == \"secret_santa\"(в разработке)"
+					},
+					"response": []
+				}
+			],
+			"description": "Всё, что связано с главной бордой."
+		},
+		{
+			"name": "list interaction",
+			"item": [
+				{
+					"name": "/my/list/create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_name\": \"Some event name 2\",\n    \"type\": \"personal\",\n    \"event_description\": \"example_description\",\n    \"max_number_of_people\": \"10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/list/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"list",
+								"create"
+							]
+						},
+						"description": "Для тайного санты `event_name` всегда \"Secret Santa\", в другом случае ивент считается другим типом.\n\nВозвращает:\n\n- `201` если всё хорошо\n    \n- `400` если всё плохо"
+					},
+					"response": []
+				},
+				{
+					"name": "/my/list/delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_id\": \"18ed8431-c858-4b9d-afbd-8b9a9680f789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/list/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"list",
+								"delete"
+							]
+						},
+						"description": "Удаляет ивент, только если ты овнер.\n\nпринимает \"event_id\"\n\nВозвращает:\n\n- `200` если всё хорошо\n    \n- `400` если всё плохо"
+					},
+					"response": []
+				},
+				{
+					"name": "/my/list/leave",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_id\": \"18ed8431-c858-4b9d-afbd-8b9a9680f789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/list/leave",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"list",
+								"leave"
+							]
+						},
+						"description": "Уходит из ивента, нужен `event_id`\n\nВозвращает:\n\n- `200` если всё хорошо\n    \n- `400` если всё плохо\n    \n- `403` если неавторизован"
+					},
+					"response": []
+				},
+				{
+					"name": "/my/list/edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"event_id\": \"0fe115f6-8cb1-467b-8c07-b31da93933bf\",\r\n\"event_invite_code\": \"d06a5d-ff3c1a\",\r\n\"event_name\": \"Amogus\",\r\n\"event_description\": \"example_description\",\r\n\"max_number_of_people\": 10,\r\n\"wishes\": [{\"id\": 0,\r\n\"item\": \"AMOGUS\"},\r\n{\"item\":\"Xbox\"}, \r\n{\"item\": \"Car\"}],\r\n\"participators\": [\r\n{\r\n\"id\": 1,\r\n\"username\": \"example_username\"\r\n}\r\n]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/list/edit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"list",
+								"edit"
+							]
+						},
+						"description": "Обновление списка(в основном для обновления wishlist'а). Принимает такой перечень штук. Такой json необходим, иначе мне нужно будет делать много условий)\n\nВозвращает:\n\n- `201` если всё хорошо\n    \n- `500` если всё плохо\n    \n- `400` если неавторизован или нет ивента"
+					},
+					"response": []
+				},
+				{
+					"name": "/take/present",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_id\": \"0fe115f6-8cb1-467b-8c07-b31da93933bf\",\n    \"wish_id\": [2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/take/present",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"take",
+								"present"
+							]
+						},
+						"description": "Сюда идут запросы от пользователей для того, чтобы взять себе подарок(ки), который будет подарен.\n\nВозвращает:\n\n- `201` если всё хорошо\n    \n- `400` если всё плохо\n    \n- `403` если неавторизован"
+					},
+					"response": []
+				},
+				{
+					"name": "/secret/santa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_id\": \"ae9ca4586568b79b3aa8f401f0862d64d04be90f\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/secret/santa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"secret",
+								"santa"
+							]
+						},
+						"description": "Сюда запрос на розыгрышь подарков.\n\nВозвращает:\n\n- `201` если всё хорошо\n    \n- `400` если всё плохо"
+					},
+					"response": []
+				},
+				{
+					"name": "/my/list/join",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_invite_code\": \"b5cb9e-ff79e8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/my/list/join",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"my",
+								"list",
+								"join"
+							]
+						},
+						"description": "Присоединяемся к листу (знаю, что не очень безопасно, но для фронта не важно)\n\nНужен `event_invite_code`\n\nВозвращает\n\n- `203` если нет мест\n    \n- `200` если всё хорошо\n    \n- `400` если что-то не так"
+					},
+					"response": []
+				}
+			],
+			"description": "С конкретным листом"
+		},
+		{
+			"name": "api_features",
+			"item": [
+				{
+					"name": "/wishlist/type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/wishlist/type",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wishlist",
+								"type"
+							]
+						},
+						"description": "Ничего не требует, получает куку, возвращает все типы ивентов в следующем формате.\n\n``` json\n[\n\"personal\",\n\"secret_santa\"\n]\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "/refresh/token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/refresh/token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"refresh",
+								"token"
+							]
+						},
+						"description": "Ничего не требует, получает куку, если пользователь залогинен, возвращает новую"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1",
+			"disabled": true
+		},
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:5000"
+		}
+	]
+}

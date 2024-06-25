@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Создание Списка{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2>Создать Новый Список</h2>
+    <form action="/create_list" method="post">
+        <div class="mb-3">
+            <label for="eventName" class="form-label">Название События</label>
+            <input type="text" class="form-control" id="eventName" name="eventName" required>
+        </div>
+        <div class="mb-3">
+            <label for="eventDescription" class="form-label">Описание</label>
+            <textarea class="form-control" id="eventDescription" name="eventDescription" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Создать Список</button>
+    </form>
+</div>
+{% endblock %}
